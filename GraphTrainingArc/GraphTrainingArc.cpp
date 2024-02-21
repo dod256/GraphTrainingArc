@@ -1,8 +1,10 @@
 
+#include <cassert>
 #include <chrono>
 #include <cstdlib>
 
 #include "EdgeListGraph.h"
+#include "GraphManager.h"
 
 int main(int argc, char* argv[])
 {
@@ -10,16 +12,12 @@ int main(int argc, char* argv[])
     const time_t t = std::chrono::system_clock::to_time_t(tm);
     srand(t);
 
-    int n = rand() % 10 + 1;
-    int m = rand() % 20 + 1;
+    //EdgeListGraph graph = GraphManager::GenerateRandomGraph(rand() % 10 + 1, rand() % 20 + 1);
+    //graph.PrintVerticesLists();
 
-    EdgeListGraph graph(n);
-    for (int i = 0 ; i < m; ++i)
-    {
-        graph.AddEdge(rand() % n, rand() % n);
-    }
-
-    graph.PrintVerticesLists();
+    EdgeListGraph graph = GraphManager::GenerateCompleteGraph(rand() % 10 + 1);
+    const int numberOfComponents = graph.CalculateComponents();
+    assert(numberOfComponents == 1);
     
     return 0;
 }

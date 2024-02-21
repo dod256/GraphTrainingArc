@@ -156,11 +156,13 @@
   <ItemGroup>
     <ClCompile Include="EdgeListGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="GraphManager.cpp" />
     <ClCompile Include="GraphTrainingArc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EdgeListGraph.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
