@@ -154,12 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdjacencyMatrixGraph.cpp" />
     <ClCompile Include="EdgeListGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GraphManager.cpp" />
     <ClCompile Include="GraphTrainingArc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdjacencyMatrixGraph.h" />
     <ClInclude Include="EdgeListGraph.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphManager.h" />

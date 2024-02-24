@@ -2,6 +2,40 @@
 
 #include <cassert>
 
+EdgeListGraph EdgeListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
+{
+    EdgeListGraph graph(numberOfVertices);
+    for (int i = 0 ; i < numberOfEdges; ++i)
+    {
+        graph.AddEdge(rand() % numberOfVertices, rand() % numberOfVertices);
+    }
+    return graph;
+}
+
+EdgeListGraph EdgeListGraph::GenerateCompleteGraph(int numberOfVertices)
+{
+    EdgeListGraph graph(numberOfVertices);
+    for (int i = 0 ; i < numberOfVertices; ++i)
+    {
+        for (int j = 0 ; j < numberOfVertices; ++j)
+        {
+            if (i == j)
+            {
+                continue;
+            }
+            graph.AddEdge(i, j);
+        }        
+    }
+    return graph;
+    
+}
+
+
+EdgeListGraph::EdgeListGraph(int numberOfVertices): Graph(numberOfVertices), m_NumberOfVertices(numberOfVertices), m_NumberOfEdges(0)
+{
+    m_Head = std::vector<int>(m_NumberOfVertices, -1);
+}
+
 void EdgeListGraph::AddEdge(int v, int u, int w)
 {
     m_To.push_back(u);
@@ -37,6 +71,11 @@ int EdgeListGraph::CalculateComponents()
         }
     }
     return cnt;
+}
+
+void EdgeListGraph::PrintGraph()
+{
+    PrintVerticesLists();
 }
 
 void EdgeListGraph::Dfs(int v, int component)
