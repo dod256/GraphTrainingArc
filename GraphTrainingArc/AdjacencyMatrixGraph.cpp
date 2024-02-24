@@ -21,7 +21,7 @@ int AdjacencyMatrixGraph::CalculateComponents()
 
 void AdjacencyMatrixGraph::PrintGraph()
 {
-    int numberOfVertices = m_AdjacencyMatrix.size();
+    int numberOfVertices = static_cast<int>(m_AdjacencyMatrix.size());
     for(int i = 0; i < numberOfVertices; ++i)
     {
         for(int j = 0; j < numberOfVertices; ++j)

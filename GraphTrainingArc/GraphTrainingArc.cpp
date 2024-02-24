@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 {
     const auto tm = std::chrono::system_clock::now();
     const time_t t = std::chrono::system_clock::to_time_t(tm);
-    srand(t);
+    srand(static_cast<int>(t));
 
     //EdgeListGraph graph = GraphManager::GenerateRandomGraph(rand() % 10 + 1, rand() % 20 + 1);
     //graph.PrintVerticesLists();
