@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
     graph.AddEdge(2, 0, 100);
     graph.AddEdge(1, 3, 600);
     graph.AddEdge(2, 3, 200);
-    graph.PrintGraph();
+    assert(graph.ShortestPathWithAtMostKEdges(0, 3, 2) == 700);
     
     return 0;
 }
