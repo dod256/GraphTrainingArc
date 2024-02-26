@@ -3,16 +3,16 @@
 
 #include "Graph.h"
 
-class EdgeListGraph : public Graph
+class  AdjacencyListGraph : public Graph
 {
 public:
-    static EdgeListGraph GenerateRandomGraph(int numberOfVertices, int numberOfEdges);
-    static EdgeListGraph GenerateCompleteGraph(int numberOfVertices);
+    static  AdjacencyListGraph GenerateRandomGraph(int numberOfVertices, int numberOfEdges);
+    static  AdjacencyListGraph GenerateCompleteGraph(int numberOfVertices);
 
     int m_NumberOfVertices;
     int m_NumberOfEdges;
 
-    EdgeListGraph(int numberOfVertices);
+     AdjacencyListGraph(int numberOfVertices);
 
     void AddEdge(int v, int u, int w = 0) override;
     int CalculateComponents() override;

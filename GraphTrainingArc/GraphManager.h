@@ -1,5 +1,5 @@
 #pragma once
-#include "EdgeListGraph.h"
+#include " AdjacencyListGraph.h"
 
 class GraphManager
 {

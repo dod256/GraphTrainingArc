@@ -1,10 +1,10 @@
-#include "EdgeListGraph.h"
+#include " AdjacencyListGraph.h"
 
 #include <cassert>
 
-EdgeListGraph EdgeListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
+ AdjacencyListGraph  AdjacencyListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
 {
-    EdgeListGraph graph(numberOfVertices);
+     AdjacencyListGraph graph(numberOfVertices);
     for (int i = 0 ; i < numberOfEdges; ++i)
     {
         graph.AddEdge(rand() % numberOfVertices, rand() % numberOfVertices);
@@ -12,9 +12,9 @@ EdgeListGraph EdgeListGraph::GenerateRandomGraph(int numberOfVertices, int numbe
     return graph;
 }
 
-EdgeListGraph EdgeListGraph::GenerateCompleteGraph(int numberOfVertices)
+ AdjacencyListGraph  AdjacencyListGraph::GenerateCompleteGraph(int numberOfVertices)
 {
-    EdgeListGraph graph(numberOfVertices);
+     AdjacencyListGraph graph(numberOfVertices);
     for (int i = 0 ; i < numberOfVertices; ++i)
     {
         for (int j = 0 ; j < numberOfVertices; ++j)
@@ -31,12 +31,12 @@ EdgeListGraph EdgeListGraph::GenerateCompleteGraph(int numberOfVertices)
 }
 
 
-EdgeListGraph::EdgeListGraph(int numberOfVertices): Graph(numberOfVertices), m_NumberOfVertices(numberOfVertices), m_NumberOfEdges(0)
+ AdjacencyListGraph:: AdjacencyListGraph(int numberOfVertices): Graph(numberOfVertices), m_NumberOfVertices(numberOfVertices), m_NumberOfEdges(0)
 {
     m_Head = std::vector<int>(m_NumberOfVertices, -1);
 }
 
-void EdgeListGraph::AddEdge(int v, int u, int w)
+void  AdjacencyListGraph::AddEdge(int v, int u, int w)
 {
     m_To.push_back(u);
     m_Next.push_back(m_Head[v]);
@@ -45,7 +45,7 @@ void EdgeListGraph::AddEdge(int v, int u, int w)
     m_NumberOfEdges++;
 }
 
-void EdgeListGraph::PrintVerticesLists() const
+void  AdjacencyListGraph::PrintVerticesLists() const
 {
     for (int i = 0; i < m_NumberOfVertices; ++i)
     {
@@ -58,7 +58,7 @@ void EdgeListGraph::PrintVerticesLists() const
     }
 }
 
-int EdgeListGraph::CalculateComponents()
+int  AdjacencyListGraph::CalculateComponents()
 {
     m_Component = std::vector<int>(m_NumberOfVertices, -1);
     int cnt = 0;
@@ -73,12 +73,12 @@ int EdgeListGraph::CalculateComponents()
     return cnt;
 }
 
-void EdgeListGraph::PrintGraph()
+void  AdjacencyListGraph::PrintGraph()
 {
     PrintVerticesLists();
 }
 
-void EdgeListGraph::Dfs(int v, int component)
+void  AdjacencyListGraph::Dfs(int v, int component)
 {
     m_Component[v] = component;
     for (int i = m_Head[v]; i != -1; i = m_Next[i])
