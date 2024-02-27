@@ -1,11 +1,11 @@
-
 #include <cassert>
 #include <chrono>
 #include <cstdlib>
+#include <iostream>
+#include <ostream>
 
 #include "AdjacencyMatrixGraph.h"
-#include " AdjacencyListGraph.h"
-#include "GraphManager.h"
+#include "AdjacencyListGraph.h"
 
 int main(int argc, char* argv[])
 {
@@ -24,9 +24,14 @@ int main(int argc, char* argv[])
     graph.AddEdge(2, 3, 200);
     assert(graph.ShortestPathWithAtMostKEdges(0, 3, 2) == 700);
 
-    AdjacencyListGraph graph2 =  AdjacencyListGraph::GenerateCompleteGraph(rand() % 10 + 1);
-    const int numberOfComponents = graph2.CalculateComponents();
-    assert(numberOfComponents == 1);
-    
+    for(int t = 0; t < 10; ++t)
+    {
+        const int n = rand() % 1000 + 1;
+        AdjacencyListGraph graph2 =  AdjacencyListGraph::GenerateCompleteGraph(n);
+        const int numberOfComponents = graph2.CalculateComponents();
+        assert(numberOfComponents == 1);
+        EdgeList spanningForest = graph2.MinimumSpanningForest();
+        assert(spanningForest.GetList().size() == graph2.m_NumberOfVertices - 1);
+    }
     return 0;
 }

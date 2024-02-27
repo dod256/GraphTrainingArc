@@ -1,8 +1,10 @@
-#include " AdjacencyListGraph.h"
+#include "AdjacencyListGraph.h"
 
 #include <cassert>
+#include <iostream>
+#include <ostream>
 
- AdjacencyListGraph  AdjacencyListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
+AdjacencyListGraph  AdjacencyListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
 {
      AdjacencyListGraph graph(numberOfVertices);
     for (int i = 0 ; i < numberOfEdges; ++i)
@@ -45,11 +47,64 @@ void  AdjacencyListGraph::AddEdge(int v, int u, int w)
     m_NumberOfEdges++;
 }
 
+Edge* AdjacencyListGraph::GetEdge(int v, int u)
+{
+    // ToDo Implement
+    return nullptr;
+}
+
+int FindSet(std::vector<int>& u, int a)
+{
+     if (u[a] == a)
+         return a;
+     return u[a] = FindSet(u, u[a]);
+}
+
+
+void UnionSets(std::vector<int>& u, int a, int b)
+{
+    a = FindSet(u, a);
+    b = FindSet(u, b);
+    if (a != b)
+    {
+        u[a] = b;
+    }
+}
+
+EdgeList AdjacencyListGraph::MinimumSpanningForest()
+{
+    EdgeList edges;
+    for (int i = 0 ; i < m_NumberOfVertices; ++i)
+    {
+        for (int j = m_Head[i]; j != -1; j = m_Next[j])
+        {
+            edges.AddEdge(i, m_To[j], m_Weight[j]);
+        }
+    }
+    assert(edges.GetList().size() == m_NumberOfEdges);
+    edges.Sort();
+    std::vector<int> u(m_NumberOfVertices);
+    for(int i = 0; i < m_NumberOfVertices; ++i)
+    {
+        u[i] = i;
+    }
+    EdgeList result;
+    for(const auto& edge : edges.GetList())
+    {
+        if (FindSet(u, edge.m_From) != FindSet(u, edge.m_To))
+        {
+            result.AddEdge(edge);
+            UnionSets(u, edge.m_From, edge.m_To);
+        }
+    }
+    return result;
+}
+
 void  AdjacencyListGraph::PrintVerticesLists() const
 {
     for (int i = 0; i < m_NumberOfVertices; ++i)
     {
-        printf("Vertice #%d:", i);
+        printf("Vertex #%d:", i);
         for (int j = m_Head[i]; j != -1; j = m_Next[j])
         {
             printf(" (to %d weight %d)", m_To[j], m_Weight[j]);

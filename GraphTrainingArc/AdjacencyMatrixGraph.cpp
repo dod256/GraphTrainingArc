@@ -17,6 +17,12 @@ void AdjacencyMatrixGraph::AddEdge(int v, int u, int w)
     m_AdjacencyMatrix[v][u] = w;
 }
 
+Edge* AdjacencyMatrixGraph::GetEdge(int v, int u)
+{
+    // ToDo Implement
+    return nullptr;
+}
+
 int AdjacencyMatrixGraph::CalculateComponents()
 {
     return -1;
@@ -44,6 +50,12 @@ void AdjacencyMatrixGraph::PrintGraph()
         
 }
 
+EdgeList AdjacencyMatrixGraph::MinimumSpanningForest()
+{
+    //ToDo implement
+    return EdgeList();
+}
+
 std::vector<std::vector<int>> AdjacencyMatrixGraph::MatrixMultiply(const std::vector<std::vector<int>>& a, const std::vector<std::vector<int>>& b)
 {
     const int numberOfVertices = static_cast<int>(a.size());
@@ -69,7 +81,7 @@ std::vector<std::vector<int>> AdjacencyMatrixGraph::MatrixMultiply(const std::ve
 
 int AdjacencyMatrixGraph::ShortestPathWithAtMostKEdges(int v, int u, int k)
 {
-    int numberOfVertices = m_AdjacencyMatrix.size(); 
+    const int numberOfVertices = static_cast<int>(m_AdjacencyMatrix.size()); 
     std::vector<std::vector<int>> graph(m_AdjacencyMatrix);
     for(int i = 0; i < graph.size(); ++i)
     {

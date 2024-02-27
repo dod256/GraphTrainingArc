@@ -3,18 +3,22 @@
 
 #include "Graph.h"
 
-class  AdjacencyListGraph : public Graph
+class AdjacencyListGraph : public Graph
 {
 public:
-    static  AdjacencyListGraph GenerateRandomGraph(int numberOfVertices, int numberOfEdges);
-    static  AdjacencyListGraph GenerateCompleteGraph(int numberOfVertices);
+    static AdjacencyListGraph GenerateRandomGraph(int numberOfVertices, int numberOfEdges);
+    static AdjacencyListGraph GenerateCompleteGraph(int numberOfVertices);
 
     int m_NumberOfVertices;
     int m_NumberOfEdges;
 
-     AdjacencyListGraph(int numberOfVertices);
+    AdjacencyListGraph(int numberOfVertices);
 
     void AddEdge(int v, int u, int w = 0) override;
+    Edge* GetEdge(int v, int u) override;
+
+    EdgeList MinimumSpanningForest() override;
+    
     int CalculateComponents() override;
     void PrintGraph() override;
 private:
