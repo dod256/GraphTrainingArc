@@ -35,9 +35,11 @@ int main(int argc, char* argv[])
         assert(spanningForest.GetList().size() == graph2.m_NumberOfVertices - 1);
     }
 */
-    AdjacencyListGraph graph2(2);
+    AdjacencyListGraph graph2(3);
     graph2.AddEdge(0, 1, 1);
-    assert(graph2.ShortestPath(0, 1) == 1);
+    graph2.AddEdge(0, 2, 10);
+    graph2.AddEdge(1, 2, 1);
+    assert(graph2.ShortestPath(0, 2) == 2);
     
     return 0;
 }

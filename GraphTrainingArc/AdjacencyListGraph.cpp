@@ -119,18 +119,19 @@ int AdjacencyListGraph::ShortestPath(int start, int finish)
     std::set<std::pair<int, int>> s;
     std::vector<int> dist(m_NumberOfVertices, -1);
     dist[start] = 0;
-    s.insert(std::make_pair(start, 0));
+    s.insert(std::make_pair(0, start));
     while (!s.empty())
     {
         const auto q = *s.begin();
-        const int v = q.first;
-        const int d = q.second;
-        dist[v] = d;
+        const int v = q.second;
+        const int d = q.first;
         s.erase(s.begin());
+        std::cerr << v << " " << d << std::endl;
         for (int i = m_Head[v]; i != -1; i = m_Next[i])
         {
             if (dist[m_To[i]] == -1)
             {
+                dist[m_To[i]] = d + m_Weight[i];
                 s.insert(std::make_pair(d + m_Weight[i], m_To[i]));                
             }
             if (d + m_Weight[i] < dist[m_To[i]])
@@ -138,6 +139,7 @@ int AdjacencyListGraph::ShortestPath(int start, int finish)
                 const auto it = s.find(std::make_pair(dist[m_To[i]], m_To[i]));
                 s.erase(it);
                 s.insert(std::make_pair(d + m_Weight[i], m_To[i]));
+                dist[m_To[i]] = d + m_Weight[i];
             }
         }
     }
