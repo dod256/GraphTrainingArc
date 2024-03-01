@@ -35,6 +35,8 @@ public:
     virtual Edge* GetEdge(int v, int u) = 0;
 
     virtual EdgeList MinimumSpanningForest() = 0;
+
+    virtual int ShortestPath(int start, int finish) = 0;
     
     virtual int CalculateComponents() = 0;
     virtual void PrintGraph() = 0;

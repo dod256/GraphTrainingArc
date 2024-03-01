@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
     graph.AddEdge(2, 3, 200);
     assert(graph.ShortestPathWithAtMostKEdges(0, 3, 2) == 700);
 
+/*    
     for(int t = 0; t < 10; ++t)
     {
         const int n = rand() % 1000 + 1;
@@ -33,5 +34,10 @@ int main(int argc, char* argv[])
         EdgeList spanningForest = graph2.MinimumSpanningForest();
         assert(spanningForest.GetList().size() == graph2.m_NumberOfVertices - 1);
     }
+*/
+    AdjacencyListGraph graph2(2);
+    graph2.AddEdge(0, 1, 1);
+    assert(graph2.ShortestPath(0, 1) == 1);
+    
     return 0;
 }

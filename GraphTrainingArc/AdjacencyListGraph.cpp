@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <ostream>
+#include <set>
 
 AdjacencyListGraph  AdjacencyListGraph::GenerateRandomGraph(int numberOfVertices, int numberOfEdges)
 {
@@ -111,6 +112,36 @@ void  AdjacencyListGraph::PrintVerticesLists() const
         }
         printf("\n");
     }
+}
+
+int AdjacencyListGraph::ShortestPath(int start, int finish)
+{
+    std::set<std::pair<int, int>> s;
+    std::vector<int> dist(m_NumberOfVertices, -1);
+    dist[start] = 0;
+    s.insert(std::make_pair(start, 0));
+    while (!s.empty())
+    {
+        const auto q = *s.begin();
+        const int v = q.first;
+        const int d = q.second;
+        dist[v] = d;
+        s.erase(s.begin());
+        for (int i = m_Head[v]; i != -1; i = m_Next[i])
+        {
+            if (dist[m_To[i]] == -1)
+            {
+                s.insert(std::make_pair(d + m_Weight[i], m_To[i]));                
+            }
+            if (d + m_Weight[i] < dist[m_To[i]])
+            {
+                const auto it = s.find(std::make_pair(dist[m_To[i]], m_To[i]));
+                s.erase(it);
+                s.insert(std::make_pair(d + m_Weight[i], m_To[i]));
+            }
+        }
+    }
+    return dist[finish];
 }
 
 int  AdjacencyListGraph::CalculateComponents()

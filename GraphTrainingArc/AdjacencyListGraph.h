@@ -12,12 +12,14 @@ public:
     int m_NumberOfVertices;
     int m_NumberOfEdges;
 
-    AdjacencyListGraph(int numberOfVertices);
+    explicit AdjacencyListGraph(int numberOfVertices);
 
     void AddEdge(int v, int u, int w = 0) override;
     Edge* GetEdge(int v, int u) override;
 
     EdgeList MinimumSpanningForest() override;
+
+    int ShortestPath(int start, int finish) override;
     
     int CalculateComponents() override;
     void PrintGraph() override;
@@ -31,4 +33,5 @@ private:
 
     void Dfs(int v, int component);
     void PrintVerticesLists() const;
+
 };
